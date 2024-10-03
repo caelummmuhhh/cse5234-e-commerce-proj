@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 
 const ShippingEntry = () => {
     const [shippingDetails, setShippingDetails] = useState({
@@ -8,9 +9,9 @@ const ShippingEntry = () => {
         state: '',
         zip: '',
     });
-
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
-        e.preventDefault();
+        navigate('/purchase/viewOrder', {shippingDetails : shippingDetails, setShippingDetails : setShippingDetails});
         console.log('Shipping Details: ', shippingDetails);
 
     };
