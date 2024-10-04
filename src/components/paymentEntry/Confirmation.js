@@ -1,13 +1,15 @@
 import React from 'react';
 
 const Confirmation = () => {
-    let TITLE = 'Confirmation Page';
+    let TITLE = 'Order Confirmed';
 
     return (
         <div>
-            <h1>
-                {TITLE}
-            </h1>
+            <h1>{TITLE}</h1>
+            <p style={{ fontSize: '16px' }}>
+                Thank you for your purchase!<br />
+                Order Code: 1234567890
+            </p>
         </div>
     );
 };
