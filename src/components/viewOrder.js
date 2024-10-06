@@ -21,17 +21,25 @@ const ViewOrder = () => {
     });
 
     const calcTotal = () => {
-        return Object.keys(order).reduce((total, itemId) => total + (products[itemId].price * order[itemId]), 0);
+        return Object.keys(order).reduce((total, itemId) => total + (products.find((item) => item.id === Number(itemId)).price * order[itemId]), 0);
     }
 
     // lab5: hard coded for now...
     const products = require('../fakeData.json');
-
+    console.log(products);
     return (
         <div>
             <h1>{TITLE}</h1>
             <table>
-                {Object.keys(order).map((itemId) => (<ItemOrderOverview key={itemId} item={products[itemId]} quantity={order[itemId]}></ItemOrderOverview>))}
+                <tbody>
+                    {Object.keys(order).map((itemId) => (
+                        <ItemOrderOverview
+                            key={itemId}
+                            item={products.find((item) => item.id === Number(itemId))}
+                            quantity={order[itemId]}>
+                        </ItemOrderOverview>
+                    ))}
+                </tbody>
             </table>
             <h4>Total: ${calcTotal().toFixed(2)}</h4>
             <button type='submit' onClick={handleSubmit}>Confirm Purchase</button>
