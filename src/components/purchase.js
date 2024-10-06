@@ -10,10 +10,8 @@ const Purchase = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-        navigate('/purchase/paymentEntry', {order: order, setOrder: setOrder});
+        navigate('/purchase/paymentEntry', {state: {order: order}});
     }
-
-    console.log('order: ', order);
 
     let TITLE = 'Purchase Page';
 
