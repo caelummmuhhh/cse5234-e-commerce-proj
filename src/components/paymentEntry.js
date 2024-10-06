@@ -1,9 +1,10 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 
 import CardEntry from './paymentEntry/CardEntry';
 import AddressEntry from './paymentEntry/AddressEntry';
 
 import '../styles/paymentEntry.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PaymentEntry = () => {
     const PAYMENTINFO = {
@@ -21,12 +22,16 @@ const PaymentEntry = () => {
         }
     };
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const [paymentInfo, setPaymentInfo] = useState(JSON.parse(window.localStorage.getItem('paymentInfo')) || PAYMENTINFO);
 
     const handlePaymentEntrySubmit = (e) => {
         e.preventDefault();
         setPaymentInfo(paymentInfo);
         window.localStorage.setItem('paymentInfo', JSON.stringify(paymentInfo));
+        navigate('/purchase/shippingEntry', {state: {paymentInfo: paymentInfo, order: location.state.order}});
     }
 
     const setCard = (card) => {
@@ -38,6 +43,14 @@ const PaymentEntry = () => {
         paymentInfo.address = address;
         setPaymentInfo(paymentInfo);
     }
+
+    useEffect(() => {
+        // there's not order info, kick user back to purchase page
+        if (!location.state) {
+            console.log('no order infomation, kicked user back to purchase page.');
+            navigate('/purchase');
+        }
+    });
 
     return (
         <div className='w-96 flex-column gap-1'>

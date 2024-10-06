@@ -19,7 +19,7 @@ const Purchase = () => {
                 return;
         }
 
-        navigate('/purchase/paymentEntry', {order: order, setOrder: setOrder});
+        navigate('/purchase/paymentEntry', {state: {order: order}});
     }
 
     let TITLE = 'Purchase Page';
