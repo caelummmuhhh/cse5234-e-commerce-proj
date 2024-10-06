@@ -3,6 +3,7 @@ import {useLocation, useNavigate} from 'react-router-dom'
 
 const ShippingEntry = () => {
     const location = useLocation();
+    const order = location.state.order || {};
     const [shippingDetails, setShippingDetails] = useState({
         address_1: '',
         address_2: '',
@@ -12,9 +13,13 @@ const ShippingEntry = () => {
     });
     const navigate = useNavigate();
     const handleSubmit = (e) => {
-        navigate('/purchase/viewOrder', {shippingDetails : shippingDetails, setShippingDetails : setShippingDetails});
-        console.log('Shipping Details: ', shippingDetails);
-
+        order.address_1 = shippingDetails.address_1;
+        order.address_2 = shippingDetails.address_1;
+        order.city = shippingDetails.city;
+        order.state = shippingDetails.state;
+        order.zip = shippingDetails.zip;
+        
+        navigate('/purchase/viewOrder', {state: {order: order}});
     };
 
     const handleChange = (e) => {
