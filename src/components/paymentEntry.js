@@ -43,6 +43,7 @@ const PaymentEntry = () => {
                 <input
                     type="text"
                     name="card_holder_name"
+                    onChange={handleChange}
                     required></input>
             </label>
             <br />

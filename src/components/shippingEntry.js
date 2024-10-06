@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 
 const ShippingEntry = () => {
+    const location = useLocation();
     const [shippingDetails, setShippingDetails] = useState({
         address_1: '',
         address_2: '',
