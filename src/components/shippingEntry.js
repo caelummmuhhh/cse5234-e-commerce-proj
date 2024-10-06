@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom'
 
 const ShippingEntry = () => {
@@ -12,12 +12,8 @@ const ShippingEntry = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    console.log(location.state);
-
     const handleSubmit = (e) => {
-        navigate('/purchase/viewOrder', {shippingDetails : shippingDetails, setShippingDetails : setShippingDetails});
-        console.log('Shipping Details: ', shippingDetails);
-
+        navigate('/purchase/viewOrder', {state: {paymentInfo: location.state.paymentInfo, order: location.state.order, shippingDetails: shippingDetails}});
     };
 
     const handleChange = (e) => {
@@ -27,6 +23,14 @@ const ShippingEntry = () => {
             [name]: value,
         }));
     };
+
+    useEffect(() => {
+        // there's not order info, kick user back to purchase page
+        if (!location.state) {
+            console.log('no order infomation, kicked user back to purchase page.');
+            navigate('/purchase');
+        }
+    });
 
     return (
         <div>
