@@ -1,6 +1,6 @@
 import React from "react";
-import {useState} from "react";
-import {useNavigate} from 'react-router-dom'
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import PurchaseItem from "./productDisplay/purchaseItem";
 
 const Purchase = () => {
@@ -14,12 +14,12 @@ const Purchase = () => {
         // Check if cart is empty
         if (Object.keys(order.buyQuantity).length === 0 ||
             Object.values(order.buyQuantity).reduce((total, quantity) => total + quantity, 0) <= 0) {
-                console.log("cart is empty...");
-                // TODO: tell user cart is empty, cannot check out.
-                return;
+            console.log("cart is empty...");
+            // TODO: tell user cart is empty, cannot check out.
+            return;
         }
 
-        navigate('/purchase/paymentEntry', {state: {order: order}});
+        navigate('/purchase/paymentEntry', { state: { order: order } });
     }
 
     let TITLE = 'Purchase Page';

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { React, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ItemOrderOverview from './productDisplay/itemOrderOverview';
 
@@ -9,7 +9,7 @@ const ViewOrder = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
-        navigate('/purchase/viewConfirmation', {state: location.state});
+        navigate('/purchase/viewConfirmation', { state: location.state });
     }
 
     useEffect(() => {

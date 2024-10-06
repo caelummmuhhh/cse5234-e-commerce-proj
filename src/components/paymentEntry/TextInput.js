@@ -1,6 +1,6 @@
 import { React } from 'react';
 
-const TextInput = ({ required, label, fieldName, state, setState}) => {
+const TextInput = ({ required, label, fieldName, state, setState }) => {
     return (
         <div className='flex-column gap-1 my-1'>
             <label>
@@ -9,7 +9,7 @@ const TextInput = ({ required, label, fieldName, state, setState}) => {
             <input
                 type='text'
                 required={required}
-                onChange= {(e) => {
+                onChange={(e) => {
                     state[fieldName] = e.target.value;
                     setState(state);
                 }}

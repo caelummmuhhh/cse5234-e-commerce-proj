@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {useLocation, useNavigate} from 'react-router-dom'
+import { React, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const ShippingEntry = () => {
     const [shippingDetails, setShippingDetails] = useState({
@@ -13,7 +13,7 @@ const ShippingEntry = () => {
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-        navigate('/purchase/viewOrder', {state: {paymentInfo: location.state.paymentInfo, order: location.state.order, shippingDetails: shippingDetails}});
+        navigate('/purchase/viewOrder', { state: { paymentInfo: location.state.paymentInfo, order: location.state.order, shippingDetails: shippingDetails } });
     };
 
     const handleChange = (e) => {
@@ -46,7 +46,7 @@ const ShippingEntry = () => {
                         required
                     />
                 </label>
-                <br/>
+                <br />
                 <label>
                     Address 2:
                     <input
@@ -56,7 +56,7 @@ const ShippingEntry = () => {
                         onChange={handleChange}
                     />
                 </label>
-                <br/>
+                <br />
                 <label>
                     City:
                     <input
@@ -67,7 +67,7 @@ const ShippingEntry = () => {
                         required
                     />
                 </label>
-                <br/>
+                <br />
                 <label>
                     State:
                     <input
@@ -78,7 +78,7 @@ const ShippingEntry = () => {
                         required
                     />
                 </label>
-                <br/>
+                <br />
                 <label>
                     Zip Code:
                     <input
@@ -89,7 +89,7 @@ const ShippingEntry = () => {
                         required
                     />
                 </label>
-                <br/>
+                <br />
                 <button type="submit">Submit</button>
             </form>
         </div>

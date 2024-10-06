@@ -31,7 +31,7 @@ const PaymentEntry = () => {
         e.preventDefault();
         setPaymentInfo(paymentInfo);
         window.localStorage.setItem('paymentInfo', JSON.stringify(paymentInfo));
-        navigate('/purchase/shippingEntry', {state: {paymentInfo: paymentInfo, order: location.state.order}});
+        navigate('/purchase/shippingEntry', { state: { paymentInfo: paymentInfo, order: location.state.order } });
     }
 
     const setCard = (card) => {
@@ -57,7 +57,7 @@ const PaymentEntry = () => {
             <h1>Payment Entry</h1>
 
             <form onSubmit={handlePaymentEntrySubmit}>
-                <CardEntry card={paymentInfo.card} setCard={setCard}/>
+                <CardEntry card={paymentInfo.card} setCard={setCard} />
                 <AddressEntry address={paymentInfo.address} setAddress={setAddress} />
 
                 <button type='submit'>Submit</button>
