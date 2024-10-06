@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useLocation, useNavigate} from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const ShippingEntry = () => {
     const location = useLocation();
@@ -14,12 +14,12 @@ const ShippingEntry = () => {
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         order.address_1 = shippingDetails.address_1;
-        order.address_2 = shippingDetails.address_1;
+        order.address_2 = shippingDetails.address_2;
         order.city = shippingDetails.city;
         order.state = shippingDetails.state;
         order.zip = shippingDetails.zip;
-        
-        navigate('/purchase/viewOrder', {state: {order: order}});
+
+        navigate('/purchase/viewOrder', { state: { order: order } });
     };
 
     const handleChange = (e) => {
@@ -44,7 +44,7 @@ const ShippingEntry = () => {
                         required
                     />
                 </label>
-                <br/>
+                <br />
                 <label>
                     Address 2:
                     <input
@@ -54,7 +54,7 @@ const ShippingEntry = () => {
                         onChange={handleChange}
                     />
                 </label>
-                <br/>
+                <br />
                 <label>
                     City:
                     <input
@@ -65,7 +65,7 @@ const ShippingEntry = () => {
                         required
                     />
                 </label>
-                <br/>
+                <br />
                 <label>
                     State:
                     <input
@@ -76,7 +76,7 @@ const ShippingEntry = () => {
                         required
                     />
                 </label>
-                <br/>
+                <br />
                 <label>
                     Zip Code:
                     <input
@@ -87,7 +87,7 @@ const ShippingEntry = () => {
                         required
                     />
                 </label>
-                <br/>
+                <br />
                 <button type="submit">Submit</button>
             </form>
         </div>
