@@ -1,105 +1,49 @@
 import React from "react";
-import {useState} from "react";
-import {useNavigate} from 'react-router-dom'
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom'
+import PurchaseItem from "./productDisplay/purchaseItem";
 
 const Purchase = () => {
     const [order, setOrder] = useState({
-        buyQuantity: [0,0,0,0,0], credit_card_number: '', expir_date:'', cvvCode:'', card_holder_name: '',
-        address_1:'',  address_2:'', city:'', state:'', zip:'',
+        buyQuantity: {},
     })
+
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-        navigate('/purchase/paymentEntry', {order: order, setOrder: setOrder});
-    }
+        // Check if cart is empty
+        if (Object.keys(order.buyQuantity).length === 0 ||
+            Object.values(order.buyQuantity).reduce((total, quantity) => total + quantity, 0) <= 0) {
+            console.log("cart is empty...");
+            // TODO: tell user cart is empty, cannot check out.
+            return;
+        }
 
-    console.log('order: ', order);
+        navigate('/purchase/paymentEntry', { state: { order: order } });
+    }
 
     let TITLE = 'Purchase Page';
 
+    // lab5: hard coded for now...
+    const products = require('../fakeData.json');
+
+    const setItemQuantity = (itemId, quantity) => {
+        setOrder((prevOrder) => ({
+            ...prevOrder,
+            buyQuantity: {
+                ...prevOrder.buyQuantity,
+                [itemId]: quantity,
+            },
+        }));
+    };
+
     return (
         <div>
-            {TITLE}
+            <h1>{TITLE}</h1>
             <form onSubmit={handleSubmit}>
-            <label>Product 1</label>
-            <img
-             src="images/Toaster1.jpeg"
-             alt="Floral Toaster"
-             style={{width: '300px', height: '300px'}}
-             />
-            <input
-                type="number"
-                required
-                onChange={(e) =>
-                {order.buyQuantity[0] = e.target.value;}}
-                />
-            <br/>
-            <label>Product 2</label>
-            <img
-             src="images/Toaster2.jpeg"
-             alt="Hamilton Toaster"
-             style={{width: '300px', height: '300px'}}
-             />
-            <input
-                type="number"
-                required
-                onChange={(e) =>
-                {order.buyQuantity[1] = e.target.value;}}
-                />
-            <br/>
-            <label>Product 3</label>
-            <img
-             src="images/Toaster3.jpeg"
-             alt="Long Toaster"
-             style={{width: '300px', height: '300px'}}
-             />
-            <input
-                type="number"
-                required
-                onChange={(e) =>
-                {order.buyQuantity[2] = e.target.value;}}
-                />
-            <br/>
-            <label>Product 4</label>
-            <img
-             src="images/Toaster4.jpeg"
-             alt="R2D2 Toaster"
-             style={{width: '300px', height: '300px'}}
-             />
-            <input
-                type="number"
-                required
-                onChange={(e) =>
-                {order.buyQuantity[3] = e.target.value;}}
-                />
-            <br/>
-            <label>Product 5</label>
-            <img
-             src="images/Toaster5.jpeg"
-             alt="Goofy button Toaster"
-             style={{width: '300px', height: '300px'}}
-             />
-            <input
-                type="number"
-                required
-                onChange={(e) =>
-                {order.buyQuantity[4] = e.target.value;}}
-                />
-            <br/>
-            <label>Product 6</label>
-            <img
-             src="images/Toaster6.jpeg"
-             alt="Knob Toaster"
-             style={{width: '300px', height: '300px'}}
-             />
-            <input
-                type="number"
-                required
-                onChange={(e) =>
-                {order.buyQuantity[5] = e.target.value;}}
-                />
-            <br/>
-            <button className='button'>Pay</button>
+                {products.map((item) => (<PurchaseItem key={item.id} item={item} setItemQuantity={setItemQuantity}></PurchaseItem>))}
+                <br />
+                <button type="submit">Checkout</button>
             </form>
         </div>
     );
