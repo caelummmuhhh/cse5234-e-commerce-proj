@@ -10,11 +10,11 @@ import {
 } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 
-import Purchase from "./components/purchase";
-import PaymentEntry from "./components/paymentEntry";
-import ShippingEntry from "./components/shippingEntry";
-import ViewOrder from "./components/viewOrder";
-import ViewConfirmation from "./components/paymentEntry/Confirmation";
+import Purchase from './components/Purchase/Purchase';
+import PaymentEntry from "./components/PaymentEntry/PaymentEntry";
+import ShippingEntry from "./components/ShippingEntry/ShippingEntry";
+import ViewOrder from "./components/ViewOrder/ViewOrder";
+import ViewConfirmation from "./components/PaymentEntry/Confirmation/Confirmation";
 
 function App() {
   return (
@@ -22,20 +22,6 @@ function App() {
       <Helmet>
         <title>Lab 5</title>
       </Helmet>
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
       <Router>
         <div className="content justify-center">
           <Routes>

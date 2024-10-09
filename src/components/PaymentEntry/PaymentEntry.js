@@ -1,9 +1,9 @@
 import { React, useEffect, useState } from 'react';
 
-import CardEntry from './paymentEntry/CardEntry';
-import AddressEntry from './paymentEntry/AddressEntry';
+import CardEntry from './CardEntry/CardEntry';
+import AddressEntry from './AddressEntry/AddressEntry';
 
-import '../styles/paymentEntry.css';
+import './PaymentEntry.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const PaymentEntry = () => {

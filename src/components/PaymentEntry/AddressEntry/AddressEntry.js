@@ -1,6 +1,6 @@
 import { React } from 'react';
 
-import TextInput from './TextInput';
+import TextInput from '../../Forms/TextInput';
 
 const AddressEntry = ({ address, setAddress }) => {
     return (

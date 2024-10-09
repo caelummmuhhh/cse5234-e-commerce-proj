@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import PurchaseItem from "./productDisplay/purchaseItem";
+import PurchaseItem from './PurchaseItem/PurchaseItem';
 
 const Purchase = () => {
     const [order, setOrder] = useState({
@@ -25,7 +25,7 @@ const Purchase = () => {
     let TITLE = 'Purchase Page';
 
     // lab5: hard coded for now...
-    const products = require('../fakeData.json');
+    const products = require('../../fakeData.json');
 
     const setItemQuantity = (itemId, quantity) => {
         setOrder((prevOrder) => ({

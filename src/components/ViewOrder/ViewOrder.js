@@ -1,6 +1,6 @@
 import { React, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ItemOrderOverview from './productDisplay/itemOrderOverview';
+import ItemOrderOverview from './ItemOrderOverview/ItemOrderOverview';
 
 const ViewOrder = () => {
     let TITLE = 'Confirm Order';
@@ -25,7 +25,7 @@ const ViewOrder = () => {
     }
 
     // lab5: hard coded for now...
-    const products = require('../fakeData.json');
+    const products = require('../../fakeData.json');
     console.log(products);
     return (
         <div>
