@@ -15,18 +15,18 @@ import PaymentEntry from "./components/PaymentEntry/PaymentEntry";
 import ShippingEntry from "./components/ShippingEntry/ShippingEntry";
 import ViewOrder from "./components/ViewOrder/ViewOrder";
 import ViewConfirmation from "./components/PaymentEntry/Confirmation/Confirmation";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
-    <div className="App">
-      <Helmet>
-        <title>Lab 5</title>
-      </Helmet>
-      <Router>
-        <div className="content justify-center">
+    <Router>
+        <Helmet>
+          <title>Lab 5</title>
+        </Helmet>
+        <div className="App content justify-center">
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/purchase" element={<Purchase />} />
-            <Route path="/" element={<Navigate replace to="/purchase" />} />
             <Route path="/purchase/paymentEntry" element={<PaymentEntry />} />
             <Route path="/purchase/shippingEntry" element={<ShippingEntry />} />
             <Route path="/purchase/viewOrder" element={<ViewOrder />} />
@@ -34,7 +34,6 @@ function App() {
           </Routes>
         </div>
       </Router>
-    </div>
   );
 }
 export default App;
