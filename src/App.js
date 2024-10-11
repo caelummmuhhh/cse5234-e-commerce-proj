@@ -16,6 +16,7 @@ import ShippingEntry from "./components/ShippingEntry/ShippingEntry";
 import ViewOrder from "./components/ViewOrder/ViewOrder";
 import ViewConfirmation from "./components/PaymentEntry/Confirmation/Confirmation";
 import Home from "./components/Home/Home";
+import AboutUs from './components/AboutUs/AboutUs';
 
 function App() {
   return (
@@ -26,11 +27,13 @@ function App() {
         <div className="App content justify-center">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
             <Route path="/purchase" element={<Purchase />} />
             <Route path="/purchase/paymentEntry" element={<PaymentEntry />} />
             <Route path="/purchase/shippingEntry" element={<ShippingEntry />} />
             <Route path="/purchase/viewOrder" element={<ViewOrder />} />
             <Route path="/purchase/viewConfirmation" element={<ViewConfirmation />} />
+
           </Routes>
         </div>
       </Router>

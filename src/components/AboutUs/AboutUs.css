@@ -1,0 +1,33 @@
+.about-us {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    color: rgb(37, 37, 91);
+  }
+  
+  h2 {
+    margin-top: 20px;
+    color: rgb(56, 56, 136);
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .team-member {
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .contact {
+    margin-top: 20px;
+  }
+  

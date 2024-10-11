@@ -1,7 +1,5 @@
 import { React, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
-import Topbar from "../topbar/Topbar";
-import Footer from "../footer/Footer";
 
 const ShippingEntry = () => {
     const [shippingDetails, setShippingDetails] = useState({
@@ -36,8 +34,6 @@ const ShippingEntry = () => {
 
     return (
         <div>
-            <Topbar></Topbar>
-            <Footer></Footer>
             <h2>Shipping Information</h2>
             <form onSubmit={handleSubmit}>
                 <label>
