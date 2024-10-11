@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 import "./Topbar.css";
 
 const Topbar = () => {
   return (
     <div className="topbar">
       <div className="utilities">
-        <button className="btn-home">
+        <Link to="/" className="btn-home">
         <img src={`${process.env.PUBLIC_URL}/images/home.png`} alt="home" className="logo" />
-        </button>
+        </Link>
       </div>
       <div className ="btn-menu">
-        <button className="btn-menu">Menu</button>
+        <button className="btn-menu">Purchase</button>
       </div>
       <div className ="btn-contact-us">
         <button className="btn-contact-us">Contact Us</button>
