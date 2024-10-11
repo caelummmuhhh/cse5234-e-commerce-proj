@@ -7,7 +7,6 @@ const AboutUs = () => {
   return (
     <div className="about-us">
           <Topbar />
-          <Footer />
       <h1>About Us</h1>
       <p>Welcome to Toaster City! We are focused on bringing the best Toasters to you!</p>
 
@@ -47,6 +46,7 @@ const AboutUs = () => {
         <h2>Contact Us</h2>
         <p>If you have any questions, feel free to reach out to us at toasterecity@gmail.com.</p>
       </section>
+      <Footer />
     </div>
   );
 };

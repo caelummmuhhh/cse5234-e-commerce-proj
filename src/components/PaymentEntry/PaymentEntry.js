@@ -6,6 +6,9 @@ import AddressEntry from './AddressEntry/AddressEntry';
 import './PaymentEntry.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import Topbar from '../topbar/Topbar';
+import Footer from '../footer/Footer';
+
 const PaymentEntry = () => {
     const PAYMENTINFO = {
         card: {
@@ -54,6 +57,9 @@ const PaymentEntry = () => {
 
     return (
         <div className='w-96 flex-column gap-1'>
+        <Topbar />
+        <Footer />
+        <div style={{marginTop: '80px'}}></div>
             <h1>Payment Entry</h1>
 
             <form onSubmit={handlePaymentEntrySubmit}>

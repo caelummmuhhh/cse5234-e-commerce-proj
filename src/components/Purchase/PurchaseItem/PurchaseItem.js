@@ -1,4 +1,6 @@
 import { React } from 'react';
+import Topbar from '../../topbar/Topbar';
+import Footer from '../../footer/Footer';
 
 const PurchaseItem = ({ item, setItemQuantity }) => {
     const handleChange = (e) => {
@@ -8,6 +10,8 @@ const PurchaseItem = ({ item, setItemQuantity }) => {
 
     return (
         <div>
+            <Topbar />
+            <Footer />
             <h4>{item.name}</h4>
             <img src={item.img} alt={item.name} style={{ width: "150px", height: "150px" }}></img>
             <p>${item.price}</p>

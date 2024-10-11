@@ -7,7 +7,6 @@ const ContactUs = () => {
   return (
     <div className="contact-us">
       <Topbar />
-      <Footer />
       
       <h1>Contact Us</h1>
       
@@ -46,7 +45,7 @@ const ContactUs = () => {
         <h3>Can I change my order after it has been placed?</h3>
         <p>If you need to make changes to your order, please contact us within 24 hours of placing your order for the best chance of success.</p>
       </section>
-
+      <Footer />
     </div>
   );
 };
