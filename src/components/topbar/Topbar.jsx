@@ -11,13 +11,13 @@ const Topbar = () => {
         </Link>
       </div>
       <div className ="btn-menu">
-        <button className="btn-menu">Purchase</button>
+        <Link to="/purchase" className="btn-menu">Purchase</Link>
       </div>
       <div className ="btn-contact-us">
-        <button className="btn-contact-us">Contact Us</button>
+        <Link to="/ContactUs" className="btn-contact-us">Contact Us</Link>
       </div>
       <div className="btn-about-us">
-        <button className="btn-about-us">About Us</button>
+        <Link to="/AboutUs" className="btn-about-us">About Us</Link>
       </div>
     </div>
   );
