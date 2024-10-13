@@ -54,6 +54,7 @@ const PaymentEntry = () => {
 
     return (
         <div className='w-96 flex-column gap-1'>
+        <div style={{marginTop: '80px'}}></div>
             <h1>Payment Entry</h1>
 
             <form onSubmit={handlePaymentEntrySubmit}>

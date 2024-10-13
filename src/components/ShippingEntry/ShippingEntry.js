@@ -34,6 +34,7 @@ const ShippingEntry = () => {
 
     return (
         <div>
+            <div style={{marginTop: '80px'}}></div>
             <h2>Shipping Information</h2>
             <form onSubmit={handleSubmit}>
                 <label>

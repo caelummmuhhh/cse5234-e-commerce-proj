@@ -5,6 +5,7 @@ const Confirmation = () => {
 
     return (
         <div>
+            <div style={{marginTop: '80px'}}></div>
             <h1>{TITLE}</h1>
             <p style={{ fontSize: '16px' }}>
                 Thank you for your purchase!<br />

@@ -29,6 +29,7 @@ const ViewOrder = () => {
     console.log(products);
     return (
         <div>
+        <div style={{marginTop: '80px'}}></div>
             <h1>{TITLE}</h1>
             <table>
                 <tbody>
@@ -43,6 +44,7 @@ const ViewOrder = () => {
             </table>
             <h4>Total: ${calcTotal().toFixed(2)}</h4>
             <button type='submit' onClick={handleSubmit}>Confirm Purchase</button>
+            <div style={{ marginBottom: '100px' }}></div>
         </div>
     );
 };
