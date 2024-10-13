@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import PurchaseItem from './PurchaseItem/PurchaseItem';
-import Topbar from '../topbar/Topbar';
-import Footer from '../footer/Footer';
 
 const Purchase = () => {
     const [order, setOrder] = useState({
@@ -41,8 +39,6 @@ const Purchase = () => {
 
     return (
         <div>
-            <Topbar />
-            <Footer />
             <div style={{marginTop: '80px'}}></div>
             <h1>{TITLE}</h1>
             <form onSubmit={handleSubmit}>

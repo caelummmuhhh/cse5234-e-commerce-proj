@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import "./App.css";
 import React from "react";
@@ -6,7 +5,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
 } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 
@@ -18,14 +16,17 @@ import ViewConfirmation from "./components/PaymentEntry/Confirmation/Confirmatio
 import Home from "./components/Home/Home";
 import AboutUs from './components/AboutUs/AboutUs';
 import ContactUs from './components/ContactUs/ContactUs';
+import Topbar from './components/topbar/Topbar';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
     <Router>
         <Helmet>
-          <title>Lab 5</title>
+          <title>Toaster City</title>
         </Helmet>
         <div className="App content justify-center">
+          <Topbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/AboutUs" element={<AboutUs />} />
@@ -37,6 +38,7 @@ function App() {
             <Route path="/purchase/viewConfirmation" element={<ViewConfirmation />} />
 
           </Routes>
+          <Footer />
         </div>
       </Router>
   );

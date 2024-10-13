@@ -1,8 +1,6 @@
 import { React, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ItemOrderOverview from './ItemOrderOverview/ItemOrderOverview';
-import Topbar from '../topbar/Topbar';
-import Footer from '../footer/Footer';
 
 const ViewOrder = () => {
     let TITLE = 'Confirm Order';
@@ -31,8 +29,6 @@ const ViewOrder = () => {
     console.log(products);
     return (
         <div>
-        <Topbar />
-        <Footer />
         <div style={{marginTop: '80px'}}></div>
             <h1>{TITLE}</h1>
             <table>
