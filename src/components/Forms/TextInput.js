@@ -1,4 +1,5 @@
 import { React } from 'react';
+import './textinput.css';
 
 const TextInput = ({ required, label, fieldName, state, setState }) => {
     return (
@@ -13,7 +14,7 @@ const TextInput = ({ required, label, fieldName, state, setState }) => {
                     state[fieldName] = e.target.value;
                     setState(state);
                 }}
-                className='height-1-5 rounded text-base p-25'
+                className='textinputbox rounded-3 text-base p-1 border'
                 defaultValue={state[fieldName]}
             >
             </input>

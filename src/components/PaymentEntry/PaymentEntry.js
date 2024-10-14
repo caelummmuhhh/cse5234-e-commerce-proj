@@ -53,15 +53,14 @@ const PaymentEntry = () => {
     });
 
     return (
-        <div className='w-96 flex-column gap-1'>
-        <div style={{marginTop: '80px'}}></div>
-            <h1>Payment Entry</h1>
+        <div className='w-80 flex flex-column align-items-center'>
+            <h1>Payment</h1>
 
-            <form onSubmit={handlePaymentEntrySubmit}>
+            <form onSubmit={handlePaymentEntrySubmit} className='my-3 flex flex-column gap-3 align-items-center'>
                 <CardEntry card={paymentInfo.card} setCard={setCard} />
                 <AddressEntry address={paymentInfo.address} setAddress={setAddress} />
 
-                <button type='submit'>Submit</button>
+                <button className="my-3 w-25 fw-bold rounded-pill border" type='submit'>Submit</button>
             </form>
 
         </div>
