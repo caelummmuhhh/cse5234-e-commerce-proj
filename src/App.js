@@ -25,7 +25,7 @@ function App() {
         <Helmet>
           <title>Toaster City</title>
         </Helmet>
-        <div className="App content justify-center">
+        <div className="App content">
           <Topbar />
           <Routes>
             <Route path="/" element={<Home />} />
