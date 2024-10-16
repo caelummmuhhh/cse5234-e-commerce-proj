@@ -3,7 +3,7 @@ import './textinput.css';
 
 const TextInput = ({ required, label, fieldName, state, setState }) => {
     return (
-        <div className='flex-column gap-1 my-1'>
+        <div className='flex-column gap-1 border-box'>
             <label>
                 {label}
             </label>

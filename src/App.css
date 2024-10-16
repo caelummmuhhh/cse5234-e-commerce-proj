@@ -42,3 +42,12 @@
   display: flex;
   justify-content: center;
 }
+
+#back-button {
+  background-color: rgb(37, 37, 91);
+  transition: none!important;
+}
+
+#back-button:hover {
+  background-color: rgb(56, 56, 136);
+}

@@ -5,7 +5,6 @@ const Topbar = () => {
   return (
     <div className="topbar sticky-top flex flex-row justify-content-between px-4">
       <div className="utilities">
-        {/* <Link to="/" className="btn-home p-3"> */}
         <Link to="/" className="p-3 btn-home ">
           <img src={`${process.env.PUBLIC_URL}/images/home.png`} alt="home" className="logo" />
         </Link>

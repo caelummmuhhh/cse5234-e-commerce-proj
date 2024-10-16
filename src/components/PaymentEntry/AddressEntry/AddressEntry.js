@@ -4,10 +4,11 @@ import TextInput from '../../Forms/TextInput';
 
 import './addressentry.css';
 
-const AddressEntry = ({ address, setAddress }) => {
+const AddressEntry = ({ address, setAddress, title }) => {
+    const header = title ? `${title} Address` : 'Address';
     return (
         <div className='w-100'>
-            <h3>Billing Address</h3>
+            <h3>{header}</h3>
 
             <div className='rounded-3'>
                 <TextInput required={true} label='Address 1' fieldName='address1' state={address} setState={setAddress} />

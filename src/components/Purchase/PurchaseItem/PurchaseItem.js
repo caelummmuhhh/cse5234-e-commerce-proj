@@ -2,7 +2,7 @@ import { React } from 'react';
 
 import './purchaseitem.css';
 
-const PurchaseItem = ({ item, setItemQuantity }) => {
+const PurchaseItem = ({ item, setItemQuantity, defaultQuantity }) => {
     const handleChange = (e) => {
         const quantity = Number(e.target.value);
         setItemQuantity(item.id, quantity);
@@ -18,7 +18,7 @@ const PurchaseItem = ({ item, setItemQuantity }) => {
                     <p className='m-0'>${item.price}</p>
                 </div>
 
-                <input className='rounded-3 border' type="number" min={0} max={100} onChange={handleChange}></input>
+                <input className='rounded-3 border' type="number" min={0} max={100} onChange={handleChange} defaultValue={defaultQuantity}></input>
             </div>
         </div>
     );

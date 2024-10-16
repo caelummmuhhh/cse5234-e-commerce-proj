@@ -1,6 +1,6 @@
 import './App.css';
 import "./App.css";
-import React from "react";
+// import { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -19,7 +19,71 @@ import ContactUs from './components/ContactUs/ContactUs';
 import Topbar from './components/topbar/Topbar';
 import Footer from './components/Footer/Footer';
 
+/* The state for the app looks like this: */
+// {
+//   order: {
+//     buyQuantity: {1: 1, 2: 1, 3: 2}
+//   },
+//   payment: {
+//     card: {
+//       number: '',
+//       expiration: '',
+//       cvv: ''
+//     },
+//     address: {
+//         zip: '',
+//         city: '',
+//         state: '',
+//         address1: '',
+//         address2: ''
+//     }
+//   },
+//   shipping: {
+//     address_1: '',
+//     address_2: '',
+//     city: '',
+//     state: '',
+//     zip: '',
+//   }
+// }
+
 function App() {
+  // const [order, setOrder] = useState(
+  //   // This needs to hold the state being stored in each of the pages
+  //   // First pull from local storage)
+  //   // If not, set the frame of the object
+  //   JSON.parse(window.localStorage.getItem('order')) ||
+  //   {
+  //     payment: {
+  //       card: {
+  //         number: '',
+  //         expiration: '',
+  //         cvv: ''
+  //       },
+  //       address: {
+  //           zip: '',
+  //           city: '',
+  //           state: '',
+  //           address1: '',
+  //           address2: ''
+  //       }
+  //     },
+  //     items: {
+  //       buyQuantity: {},
+  //     }
+  //   }
+  // );
+
+  // const setPayment = (payment) => {
+  //   order.payment = payment;
+  //   setOrder(order);
+  // };
+
+  // const setItems = (items) => {
+  //   order.items = items;
+  //   setOrder(order);
+  // };
+
   return (
     <Router>
         <Helmet>
