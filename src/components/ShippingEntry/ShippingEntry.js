@@ -4,7 +4,7 @@ import AddressEntry from '../PaymentEntry/AddressEntry/AddressEntry';
 
 const ShippingEntry = () => {
     const [shippingDetails, setShippingDetails] = useState(
-        window.localStorage.getItem('shippingDetails') ||
+        JSON.parse(window.localStorage.getItem('shipping')) ||
         {
             zip: '',
             city: '',
@@ -19,8 +19,6 @@ const ShippingEntry = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log('submission');
 
         // Set the shipping details in local storage
         window.localStorage.setItem('shipping', JSON.stringify(shippingDetails));
@@ -39,14 +37,12 @@ const ShippingEntry = () => {
     // };
 
     const setAddress = (address) => {
-        console.log('setting address');
         setShippingDetails(address);
-        console.log(shippingDetails);
     }
 
-    useEffect(() => {
-        window.localStorage.setItem('shipping', JSON.stringify(shippingDetails));
-    }, [shippingDetails]);
+    // useEffect(() => {
+    //     window.localStorage.setItem('shipping', JSON.stringify(shippingDetails));
+    // }, [shippingDetails]);
 
     // This shouldn't be possible because the same check is made on PaymentEntry.js
     // useEffect(() => {
@@ -76,64 +72,6 @@ const ShippingEntry = () => {
 
                 <button className="my-3 w-25 fw-bold rounded-pill border" type='submit'>Submit</button>
             </form>
-
-            {/* <form onSubmit={handleSubmit}>
-                <label>
-                    Address 1:
-                    <input
-                        type="text"
-                        name="address1"
-                        value={shippingDetails.address1}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <br />
-                <label>
-                    Address 2:
-                    <input
-                        type="text"
-                        name="address2"
-                        value={shippingDetails.address2}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    City:
-                    <input
-                        type="text"
-                        name="city"
-                        value={shippingDetails.city}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <br />
-                <label>
-                    State:
-                    <input
-                        type="text"
-                        name="state"
-                        value={shippingDetails.state}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <br />
-                <label>
-                    Zip Code:
-                    <input
-                        type="text"
-                        name="zip"
-                        value={shippingDetails.zip}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-                <br />
-                <button type="submit">Submit</button>
-            </form> */}
         </div>
     );
 };

@@ -12,7 +12,7 @@ import Purchase from './components/Purchase/Purchase';
 import PaymentEntry from "./components/PaymentEntry/PaymentEntry";
 import ShippingEntry from "./components/ShippingEntry/ShippingEntry";
 import ViewOrder from "./components/ViewOrder/ViewOrder";
-import ViewConfirmation from "./components/PaymentEntry/Confirmation/Confirmation";
+import ViewConfirmation from "./components/Confirmation/Confirmation";
 import Home from "./components/Home/Home";
 import AboutUs from './components/AboutUs/AboutUs';
 import ContactUs from './components/ContactUs/ContactUs';

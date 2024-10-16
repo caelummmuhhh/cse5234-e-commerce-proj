@@ -6,6 +6,7 @@ import './addressentry.css';
 
 const AddressEntry = ({ address, setAddress, title }) => {
     const header = title ? `${title} Address` : 'Address';
+
     return (
         <div className='w-100'>
             <h3>{header}</h3>

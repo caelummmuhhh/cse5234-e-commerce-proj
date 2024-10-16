@@ -11,8 +11,9 @@ const TextInput = ({ required, label, fieldName, state, setState }) => {
                 type='text'
                 required={required}
                 onChange={(e) => {
-                    state[fieldName] = e.target.value;
-                    setState(state);
+                    const copy = { ...state };
+                    copy[fieldName] = e.target.value;
+                    setState(copy);
                 }}
                 className='textinputbox rounded-3 text-base p-1 border'
                 defaultValue={state[fieldName]}
