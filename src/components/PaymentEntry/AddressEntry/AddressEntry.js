@@ -2,12 +2,16 @@ import { React } from 'react';
 
 import TextInput from '../../Forms/TextInput';
 
-const AddressEntry = ({ address, setAddress }) => {
-    return (
-        <div>
-            <h2>Billing Address</h2>
+import './addressentry.css';
 
-            <div className='bg rounded p1'>
+const AddressEntry = ({ address, setAddress, title }) => {
+    const header = title ? `${title} Address` : 'Address';
+
+    return (
+        <div className='w-100'>
+            <h3>{header}</h3>
+
+            <div className='rounded-3'>
                 <TextInput required={true} label='Address 1' fieldName='address1' state={address} setState={setAddress} />
                 <TextInput required={false} label='Address 2' fieldName='address2' state={address} setState={setAddress} />
                 <div>

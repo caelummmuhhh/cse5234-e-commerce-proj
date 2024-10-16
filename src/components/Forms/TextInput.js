@@ -1,8 +1,9 @@
 import { React } from 'react';
+import './textinput.css';
 
 const TextInput = ({ required, label, fieldName, state, setState }) => {
     return (
-        <div className='flex-column gap-1 my-1'>
+        <div className='flex-column gap-1 border-box'>
             <label>
                 {label}
             </label>
@@ -10,10 +11,11 @@ const TextInput = ({ required, label, fieldName, state, setState }) => {
                 type='text'
                 required={required}
                 onChange={(e) => {
-                    state[fieldName] = e.target.value;
-                    setState(state);
+                    const copy = { ...state };
+                    copy[fieldName] = e.target.value;
+                    setState(copy);
                 }}
-                className='height-1-5 rounded text-base p-25'
+                className='textinputbox rounded-3 text-base p-1 border'
                 defaultValue={state[fieldName]}
             >
             </input>
