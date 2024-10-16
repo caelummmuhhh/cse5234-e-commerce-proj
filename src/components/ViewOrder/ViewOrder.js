@@ -1,9 +1,8 @@
-import { React, useEffect } from 'react';
+import { React } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ItemOrderOverview from './ItemOrderOverview/ItemOrderOverview';
 
 const ViewOrder = () => {
-    let TITLE = 'Confirm Order';
     const location = useLocation();
     // const order = location.state.order.buyQuantity;
     const order = JSON.parse(window.localStorage.getItem('order')).buyQuantity;
