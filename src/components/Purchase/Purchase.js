@@ -4,7 +4,7 @@ import PurchaseItem from './PurchaseItem/PurchaseItem';
 import './purchase.css';
 
 async function fetchInventory(name = '', inStock = '') {
-    let url = `https://1zpl4u5btg.execute-api.us-east-2.amazonaws.com/Test/inventory-management/inventory/items?Name=${name}&inStock=${inStock}`;
+    let url = `https://1zpl4u5btg.execute-api.us-east-2.amazonaws.com/Test/inventory-management/inventory`;
     try {
         let response = await fetch(url);
         if (!response.ok) {
@@ -24,18 +24,16 @@ const Purchase = () => {
             buyQuantity: {},
         }
     );
-    const [products, setProducts] = useState([]);  // State to store products
+    const [products, setProducts] = useState([]);
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        // Check if cart is empty
         if (Object.keys(order.buyQuantity).length === 0 ||
             Object.values(order.buyQuantity).reduce((total, quantity) => total + quantity, 0) <= 0) {
             console.log("cart is empty...");
             window.localStorage.removeItem('order');
-            // TODO: tell user cart is empty, cannot check out.
             return;
         }
 
@@ -91,7 +89,7 @@ const Purchase = () => {
                             />
                         ))
                      ) : (
-                        <p>Loading products...</p>  // Show loading message if products are not yet loaded
+                        <p>Loading products...</p>
                     )}
                 </div>
 
