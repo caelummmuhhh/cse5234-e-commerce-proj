@@ -1,8 +1,24 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ItemOrderOverview from './ItemOrderOverview/ItemOrderOverview';
 
+async function fetchInventory(name = '', inStock = '') {
+    let url = `https://1zpl4u5btg.execute-api.us-east-2.amazonaws.com/Test/inventory-management/inventory`;
+    try {
+        let response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (e) {
+        console.error("Error fetching inventory:", e);
+        return [];
+    }
+}
+
 const ViewOrder = () => {
+    const [products, setProducts] = useState([]);
+
     const location = useLocation();
     // const order = location.state.order.buyQuantity;
     const order = JSON.parse(window.localStorage.getItem('order')).buyQuantity;
@@ -25,7 +41,17 @@ const ViewOrder = () => {
     }
 
     // lab5: hard coded for now...
-    const products = require('../../fakeData.json');
+    // const products = require('../../fakeData.json');
+
+    // Fetch inventory and set products on component mount
+    useEffect(() => {
+        fetchInventory().then(items => {
+            setProducts(items);  // Set products fetched from API
+        }).catch(err => {
+            console.error("Error fetching inventory:", err);
+        });
+    }, []); 
+
 
     return (
         <div className='flex flex-column align-items-center container gap-3'>
