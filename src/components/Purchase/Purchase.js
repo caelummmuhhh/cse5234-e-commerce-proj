@@ -70,7 +70,10 @@ const Purchase = () => {
     }, []); 
 
     useEffect(() => {
+        console.log('useEffect order running:');
+        console.log(order);
         window.localStorage.setItem('order', JSON.stringify(order));
+        console.log(window.localStorage.getItem('order'));
     }, [order]);
 
     return (
