@@ -1,8 +1,10 @@
-import { React } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ItemOrderOverview from './ItemOrderOverview/ItemOrderOverview';
 
 const ViewOrder = () => {
+    const [products, setProducts] = useState([]);
+
     const location = useLocation();
     // const order = location.state.order.buyQuantity;
     const order = JSON.parse(window.localStorage.getItem('order')).buyQuantity;
@@ -12,20 +14,15 @@ const ViewOrder = () => {
         navigate('/purchase/viewConfirmation', { state: location.state });
     }
 
-    // useEffect(() => {
-    //     // there's not order info, kick user back to purchase page
-    //     if (!location.state) {
-    //         console.log('no order infomation, kicked user back to purchase page.');
-    //         navigate('/purchase');
-    //     }
-    // });
-
     const calcTotal = () => {
         return Object.keys(order).reduce((total, itemId) => total + (products.find((item) => item.id === Number(itemId)).price * order[itemId]), 0);
     }
 
-    // lab5: hard coded for now...
-    const products = require('../../fakeData.json');
+    useEffect(() => {
+        fetch('https://1zpl4u5btg.execute-api.us-east-2.amazonaws.com/Test/inventory-management/inventory')
+            .then(response => response.json())
+            .then(data => setProducts(data));
+    }, []);
 
     return (
         <div className='flex flex-column align-items-center container gap-3'>
@@ -42,7 +39,7 @@ const ViewOrder = () => {
             </div>
 
             <div className='flex flex-row flex-wrap gap-3 w-75 align-items-center justify-content-center'>
-                {
+                { products.length === 0 ? <h4>Loading...</h4> :
                     Object.keys(order).map((itemId) => (
                         <ItemOrderOverview
                             key={itemId}
@@ -54,7 +51,7 @@ const ViewOrder = () => {
             </div>
 
             <div className='w-50 flex flex-column align-items-center'>
-                <h4>Total: ${calcTotal().toFixed(2)}</h4>
+                {products.length === 0 ? <h4>Loading...</h4> : <><h4>Total: ${calcTotal().toFixed(2)}</h4></>}
                 <button type='submit' onClick={handleSubmit}>Confirm Purchase</button>
             </div>
         </div>
