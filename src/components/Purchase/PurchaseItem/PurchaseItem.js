@@ -16,9 +16,10 @@ const PurchaseItem = ({ item, setItemQuantity, defaultQuantity }) => {
                 <div className='flex flex-column'>
                     <h6 className='m-0'>{item.name}</h6>
                     <p className='m-0'>${item.price}</p>
+                    <p className='m-0'>Available Stock: {item.quantity}</p>
                 </div>
 
-                <input className='rounded-3 border' type="number" min={0} max={100} onChange={handleChange} defaultValue={defaultQuantity}></input>
+                <input className='rounded-3 border' type="number" min={0} max={item.quantity} onChange={handleChange} defaultValue={defaultQuantity}></input>
             </div>
         </div>
     );
