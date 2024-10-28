@@ -2,16 +2,47 @@ import { React, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ItemOrderOverview from './ItemOrderOverview/ItemOrderOverview';
 
+async function postOrder(order, shippingInfo, paymentInfo) {
+    const URL = `https://1zpl4u5btg.execute-api.us-east-2.amazonaws.com/Test/order-processing/order`;
+    let body = {
+        'items': Object.entries(order).map(([item_id, quantity]) => ({
+            item_id: Number(item_id),
+            quantity: quantity,
+          })),
+        'payment_info': shippingInfo,
+        'shipping_info': paymentInfo
+    };
+
+    try {
+        let response = await fetch(URL, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
+
+        return await response.json();
+    } catch (e) {
+        console.error("Error fetching inventory:", e);
+        return [];
+    }
+} 
+
 const ViewOrder = () => {
     const [products, setProducts] = useState([]);
+    const order = JSON.parse(window.localStorage.getItem('order')).buyQuantity;
+    const shippingInfo = JSON.parse(window.localStorage.getItem('shipping'));
+    const paymentInfo = JSON.parse(window.localStorage.getItem('paymentInfo'));
 
     const location = useLocation();
-    // const order = location.state.order.buyQuantity;
-    const order = JSON.parse(window.localStorage.getItem('order')).buyQuantity;
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
-        navigate('/purchase/viewConfirmation', { state: location.state });
+        postOrder(order, shippingInfo, paymentInfo).then((response) => {
+            window.localStorage.setItem('orderStatus', JSON.stringify(response));
+            navigate('/purchase/viewConfirmation', { state: location.state });
+        });
     }
 
     const calcTotal = () => {
