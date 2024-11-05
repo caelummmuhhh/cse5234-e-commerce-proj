@@ -9,6 +9,7 @@ const PaymentInfo = ({ card, setCard }) => {
             <h3>Card Information</h3>
 
             <div className='flex flex-column gap-1'>
+                <TextInput required={true} label='Name of Cardholder' fieldName='name' state={card} setState={setCard} />
                 <TextInput required={true} label='Card Number' fieldName='number' state={card} setState={setCard} />
 
                 <div className='flex flex-row justify-content-between border-box'>
