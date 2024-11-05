@@ -1,16 +1,40 @@
 import { React, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ItemOrderOverview from './ItemOrderOverview/ItemOrderOverview';
 
 async function postOrder(order, shippingInfo, paymentInfo) {
     const URL = `https://1zpl4u5btg.execute-api.us-east-2.amazonaws.com/Test/order-processing/order`;
+
+    const organizedPaymentInfo = {
+        'name': paymentInfo.card.name,
+        'card_number': paymentInfo.card.number,
+        'expiration_date': paymentInfo.card.expiration,
+        'cvv': paymentInfo.card.cvv,
+        'billing_address': {
+            'address_1': paymentInfo.address.address1,
+            'address_2': paymentInfo.address.address2,
+            'city': paymentInfo.address.city,
+            'state': paymentInfo.address.state,
+            'zip': paymentInfo.address.zip
+        }
+    };
+
+    const organizedShippingInfo = {
+        'address_1': shippingInfo.address1,
+        'address_2': shippingInfo.address2,
+        'city': shippingInfo.city,
+        'state': shippingInfo.state,
+        'zip': shippingInfo.zip,
+        'name': paymentInfo.card.name
+    };
+
     let body = {
         'items': Object.entries(order).map(([item_id, quantity]) => ({
             item_id: Number(item_id),
             quantity: quantity,
-          })),
-        'payment_info': shippingInfo,
-        'shipping_info': paymentInfo
+        })),
+        'payment_info': organizedPaymentInfo,
+        'shipping_info': organizedShippingInfo
     };
 
     try {
@@ -27,28 +51,24 @@ async function postOrder(order, shippingInfo, paymentInfo) {
         console.error("Error fetching inventory:", e);
         return [];
     }
-} 
+}
 
-const ViewOrder = () => {
+const ViewOrder = ({ orderProp, setOrderProp }) => {
     const [products, setProducts] = useState([]);
-    const order = JSON.parse(window.localStorage.getItem('order')).buyQuantity;
-    const shippingInfo = JSON.parse(window.localStorage.getItem('shipping'));
-    const paymentInfo = JSON.parse(window.localStorage.getItem('paymentInfo'));
-
-    const location = useLocation();
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
-        postOrder(order, shippingInfo, paymentInfo).then((response) => {
+        postOrder(orderProp.items.buyQuantity, orderProp.shipping, orderProp.payment).then((response) => {
             window.localStorage.setItem('orderStatus', JSON.stringify(response));
-            navigate('/purchase/viewConfirmation', { state: location.state });
+            navigate('/purchase/viewConfirmation');
         });
     }
 
     const calcTotal = () => {
-        return Object.keys(order).reduce((total, itemId) => total + (products.find((item) => item.id === Number(itemId)).price * order[itemId]), 0);
+        return Object.keys(orderProp.items.buyQuantity).reduce((total, itemId) => total + (products.find((item) => item.item_id === Number(itemId)).unit_price * orderProp.items.buyQuantity[itemId]), 0);
     }
 
+    // Obtain and set the products from the inventory
     useEffect(() => {
         fetch('https://1zpl4u5btg.execute-api.us-east-2.amazonaws.com/Test/inventory-management/inventory')
             .then(response => response.json())
@@ -70,20 +90,20 @@ const ViewOrder = () => {
             </div>
 
             <div className='flex flex-row flex-wrap gap-3 w-75 align-items-center justify-content-center'>
-                { products.length === 0 ? <h4>Loading...</h4> :
-                    Object.keys(order).map((itemId) => (
+                {products.length === 0 ? <h4>Loading...</h4> :
+                    Object.keys(orderProp.items.buyQuantity).map((itemId) => (
                         <ItemOrderOverview
                             key={itemId}
-                            item={products.find((item) => item.id === Number(itemId))}
-                            quantity={order[itemId]}>
+                            item={products.find((item) => item.item_id === Number(itemId))}
+                            quantity={orderProp.items.buyQuantity[itemId]}>
                         </ItemOrderOverview>
                     ))
                 }
             </div>
 
             <div className='w-50 flex flex-column align-items-center'>
-                {products.length === 0 ? <h4>Loading...</h4> : <><h4>Total: ${calcTotal().toFixed(2)}</h4></>}
-                <button type='submit' onClick={handleSubmit}>Confirm Purchase</button>
+                {products.length === 0 ? <h4>Loading...</h4> : <h4>Total: ${calcTotal().toFixed(2)}</h4>}
+                {products.length === 0 ? <h4>Loading...</h4> : <button type='submit' onClick={handleSubmit}>Confirm Purchase</button>}
             </div>
         </div>
     );

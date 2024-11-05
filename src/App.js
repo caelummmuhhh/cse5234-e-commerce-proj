@@ -1,6 +1,6 @@
 import './App.css';
 import "./App.css";
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -19,98 +19,73 @@ import ContactUs from './components/ContactUs/ContactUs';
 import Topbar from './components/topbar/Topbar';
 import Footer from './components/footer/Footer';
 
-/* The state for the app looks like this: */
-// {
-//   order: {
-//     buyQuantity: {1: 1, 2: 1, 3: 2}
-//   },
-//   payment: {
-//     card: {
-//       number: '',
-//       expiration: '',
-//       cvv: ''
-//     },
-//     address: {
-//         zip: '',
-//         city: '',
-//         state: '',
-//         address1: '',
-//         address2: ''
-//     }
-//   },
-//   shipping: {
-//     address_1: '',
-//     address_2: '',
-//     city: '',
-//     state: '',
-//     zip: '',
-//   }
-// }
-
 function App() {
-  // const [order, setOrder] = useState(
-  //   // This needs to hold the state being stored in each of the pages
-  //   // First pull from local storage)
-  //   // If not, set the frame of the object
-  //   JSON.parse(window.localStorage.getItem('order')) ||
-  //   {
-  //     payment: {
-  //       card: {
-  //         number: '',
-  //         expiration: '',
-  //         cvv: ''
-  //       },
-  //       address: {
-  //           zip: '',
-  //           city: '',
-  //           state: '',
-  //           address1: '',
-  //           address2: ''
-  //       }
-  //     },
-  //     items: {
-  //       buyQuantity: {},
-  //     }
-  //   }
-  // );
+  const [order, setOrder] = useState(
+    JSON.parse(window.localStorage.getItem('order')) ||
+    {
+      payment: {
+        card: {
+          number: '',
+          expiration: '',
+          cvv: '',
+          name: '',
+        },
+        address: {
+          zip: '',
+          city: '',
+          state: '',
+          address1: '',
+          address2: '',
+        }
+      },
+      shipping: {
+        zip: '',
+        city: '',
+        state: '',
+        address1: '',
+        address2: '',
+      },
+      items: {
+        buyQuantity: {},
+      }
+    }
+  );
 
-  // const setPayment = (payment) => {
-  //   order.payment = payment;
-  //   setOrder(order);
-  // };
-
-  // const setItems = (items) => {
-  //   order.items = items;
-  //   setOrder(order);
-  // };
+  useEffect(() => {
+    try {
+      window.localStorage.setItem('order', JSON.stringify(order));
+    } catch (error) {
+      console.error(error);
+    }
+  }, [order]);
 
   return (
     <Router>
-        <Helmet>
-          <title>Toaster City</title>
-        </Helmet>
+      <Helmet>
+        <title>Toaster City</title>
+      </Helmet>
 
 
-        <div className="flex flex-column align-items-center">
-          <Topbar />
+      <div className="flex flex-column align-items-center">
+        <Topbar />
 
-          <div className="content my-4">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/AboutUs" element={<AboutUs />} />
-              <Route path="/ContactUs" element={<ContactUs />} />
-              <Route path="/purchase" element={<Purchase />} />
-              <Route path="/purchase/paymentEntry" element={<PaymentEntry />} />
-              <Route path="/purchase/shippingEntry" element={<ShippingEntry />} />
-              <Route path="/purchase/viewOrder" element={<ViewOrder />} />
-              <Route path="/purchase/viewConfirmation" element={<ViewConfirmation />} />
-            </Routes>
-          </div>
-
-          <Footer />
+        <div className="content my-4">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/ContactUs" element={<ContactUs />} />
+            <Route path="/purchase" element={<Purchase orderProp={order} setOrderProp={setOrder} />} />
+            <Route path="/purchase/paymentEntry" element={<PaymentEntry orderProp={order} setOrderProp={setOrder} />} />
+            <Route path="/purchase/shippingEntry" element={<ShippingEntry orderProp={order} setOrderProp={setOrder} />} />
+            <Route path="/purchase/viewOrder" element={<ViewOrder orderProp={order} setOrderProp={setOrder} />} />
+            <Route path="/purchase/viewConfirmation" element={<ViewConfirmation />} />
+          </Routes>
         </div>
 
-      </Router>
+        <Footer />
+      </div>
+
+    </Router>
   );
 }
 export default App;

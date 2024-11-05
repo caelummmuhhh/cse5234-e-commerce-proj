@@ -5,8 +5,6 @@ const Confirmation = () => {
     const navigate = useNavigate();
     const orderStatus = JSON.parse(window.localStorage.getItem('orderStatus'));
 
-
-
     return (
         <div className='flex flex-column align-items-center container'>
             <div className='row align-items-center w-50'>
@@ -15,10 +13,10 @@ const Confirmation = () => {
                 </div>
 
                 <div className='col-6'>
-                    {orderStatus && orderStatus.confirmationNumber && (
+                    {orderStatus && orderStatus.confirmation_number && (
                         <h1 className='m-0'>Confirmation</h1>
                     )}
-                    {orderStatus && orderStatus.unavailableItems && (
+                    {orderStatus && orderStatus.unavailable_items && (
                         <h1 className='m-0'>Error</h1>
                     )}
 
@@ -32,9 +30,9 @@ const Confirmation = () => {
                 <br />
 
                 {/* Order was successful. */}
-                {orderStatus && orderStatus.confirmationNumber && (
+                {orderStatus && orderStatus.confirmation_number && (
                     <span>
-                        Confirmation Number: {orderStatus.confirmationNumber}
+                        Confirmation Number: {orderStatus.confirmation_number}
                     </span>
                 )}
             </p>
