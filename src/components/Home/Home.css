@@ -15,12 +15,22 @@
     /* background-color: #f9f9f9; */
 }
 
+.display-img {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    min-width: 400px;
+    z-index: -1;
+}
+
 h1 {
-    color: #333;
+    color: #999;
     margin-bottom: 20px;
+    align-self: end;
 }
 
 p {
     color: #555;
     margin-bottom: 15px;
+    align-self: end;
 }
